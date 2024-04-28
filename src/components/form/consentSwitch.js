@@ -5,10 +5,9 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function ConsentSwitch({ agreed, setAgreed, error, checkFormValidity }) {
+export default function ConsentSwitch({ agreed, setAgreed, error }) {
     const handleToggle = (isChecked) => {
         setAgreed(isChecked);
-        checkFormValidity(isChecked);
     };
     return (
         <Switch.Group as="div" className="flex gap-x-4 sm:col-span-2">

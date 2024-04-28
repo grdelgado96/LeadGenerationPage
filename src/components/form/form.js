@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import Input from './inputField'
 import ConsentSwitch from './consentSwitch';
 import { shareContact } from '../../../lib/actions';
@@ -18,11 +18,16 @@ export default function Form() {
     const phoneNumberInputRef = useRef();
     const messageInputRef = useRef();
 
+    useEffect(() => {
+        // Llama a checkFormValidity cuando el estado de agreed cambia
+        checkFormValidity();
+    }, [agreed]);
+
     const inputFields = [
-        { label: 'First name', id: 'first-name', ref: firstNameInputRef, type: "text", error: error.firstName },
-        { label: 'Last Name', id: 'last-name', ref: lastNameInputRef, type: "text", error: error.lastName },
+        { label: 'First name', id: 'firstName', ref: firstNameInputRef, type: "text", error: error.firstName },
+        { label: 'Last Name', id: 'lastName', ref: lastNameInputRef, type: "text", error: error.lastName },
         { label: 'Email', id: 'email', ref: emailInputRef, type: "email", containerClasses: "sm:col-span-2", error: error.email },
-        { label: 'Phone Number', id: 'phone-number', type: 'number', ref: phoneNumberInputRef, containerClasses: "sm:col-span-2", error: error.phoneNumber },
+        { label: 'Phone Number', id: 'phoneNumber', type: 'number', ref: phoneNumberInputRef, containerClasses: "sm:col-span-2", error: error.phoneNumber },
         { label: 'Message', id: 'message', typeField: "textarea", type: 'text', rows: 4, ref: messageInputRef, error: error.message }
     ];
 
@@ -39,30 +44,55 @@ export default function Form() {
     const submitHandler = async (event) => {
         event.preventDefault();
 
+        if (!agreed) {
+            setError((prevState) => ({
+                ...prevState,
+                'switch': 'You must agree to receive text messages and phone calls.'
+            }));
+            return;
+        }
+
         const formData = new FormData(event.target);
         const result = await shareContact(formData);
         showModal(result);
         resetFormFields();
     }
 
-    const checkFormValidity = (isChecked) => {
-        const firstNameValid = firstNameInputRef.current.checkValidity();
-        const lastNameValid = lastNameInputRef.current.checkValidity();
-        const emailValid = emailInputRef.current.checkValidity();
-        const phoneNumberValid = phoneNumberInputRef.current.checkValidity();
-        const messageValid = messageInputRef.current.checkValidity();
-        const switchValid = isChecked;
-        setError({
-            firstName: firstNameValid ? '' : 'First name cannot be empty.',
-            lastName: lastNameValid ? '' : 'Last name cannot be empty.',
-            email: emailValid ? '' : 'Please enter a valid email address.',
-            phoneNumber: phoneNumberValid ? '' : 'Please enter a valid phone number.',
-            message: messageValid ? '' : 'Message cannot be empty.',
-            switch: switchValid ? '' : 'You must agree to receive text messages and phone calls.',
-        });
+    const checkFormValidity = (fieldId) => {
+        const inputRef = {
+            'firstName': firstNameInputRef.current.checkValidity(),
+            'lastName': lastNameInputRef.current.checkValidity(),
+            'email': emailInputRef.current.checkValidity(),
+            'phoneNumber': phoneNumberInputRef.current.checkValidity(),
+            'message': messageInputRef.current.checkValidity(),
+            'switch': agreed
+        };
 
-        setFormIsValid(firstNameValid && lastNameValid && emailValid && phoneNumberValid && messageValid && switchValid);
-    }
+        const isValid = inputRef[fieldId];
+        setError((prevState) => ({
+            ...prevState,
+            [fieldId]: isValid ? '' : getErrorMessage(fieldId)
+        }));
+
+        const formIsValid = (Object.values(inputRef).every((input) => input));
+        setFormIsValid(formIsValid);
+    };
+    const getErrorMessage = (fieldId) => {
+        switch (fieldId) {
+            case 'firstName':
+                return 'First name cannot be empty.';
+            case 'lastName':
+                return 'Last name cannot be empty.';
+            case 'email':
+                return 'Please enter a valid email address.';
+            case 'phoneNumber':
+                return 'Please enter a valid phone number.';
+            case 'message':
+                return 'Message cannot be empty.';
+            default:
+                return '';
+        }
+    };
 
     return (
         <div className="isolate  px-6 py-24 sm:py-32 lg:px-8" id='contact'>
@@ -85,18 +115,16 @@ export default function Form() {
                             ref={inputField.ref}
                             label={inputField.label}
                             id={inputField.id}
-                            labelClasses={inputField.labelClasses}
                             required
                             type={inputField.type}
                             rows={inputField.rows}
                             containerClasses={inputField.containerClasses}
-                            inputClasses={inputField.inputClasses}
-                            errorClasses={inputField.errorClasses}
                             error={inputField.error}
                             typeField={inputField.typeField}
+                            onBlur={() => checkFormValidity(inputField.id)}
                         ></Input>
                     ))}
-                    <ConsentSwitch agreed={agreed} setAgreed={setAgreed} error={error.switch} checkFormValidity={checkFormValidity} ></ConsentSwitch>
+                    <ConsentSwitch agreed={agreed} setAgreed={setAgreed} error={error.switch} ></ConsentSwitch>
                 </div>
 
                 <div className="mt-10">
