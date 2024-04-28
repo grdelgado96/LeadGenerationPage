@@ -1,16 +1,17 @@
 
 import { CalendarDaysIcon, HandRaisedIcon } from '@heroicons/react/24/outline'
 import { shareSubscription } from '../../lib/actions';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 
 export default function Subscribe() {
   const emailInputRef = useRef();
-
+const [message, setMessage] = useState('Enter your email');
   const submitHandler = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const result = await shareSubscription(formData);
+    setMessage(result? 'Submitted':'Was an error')
     emailInputRef.current.value = '';
   }
   return (
@@ -35,7 +36,7 @@ export default function Subscribe() {
                   autoComplete="email"
                   required
                   className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-emerald-900 sm:text-sm sm:leading-6"
-                  placeholder="Enter your email"
+                  placeholder={message}
                 />
                 <button
                   type="submit"
