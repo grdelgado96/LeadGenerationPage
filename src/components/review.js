@@ -33,9 +33,9 @@ export default function Review() {
             </p>
           </div>
   
-          <div className="flex sm:flex-col lg:flex-row justify-center">
+          <div className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
             {reviews.map((review, index) => (
-              <section key={index} className="relative isolate overflow-hidden px-6 py-6 sm:py-8 lg:px-8">
+              <section key={index} className="mx-auto flex max-w-xs flex-col gap-y-4 ">
                 <div className="mx-auto max-w-2xl lg:max-w-4xl">
                   <figure className="mt-10">
                     <blockquote className="text-center text-lg font-semibold leading-8 text-gray-900 sm:leading-9">
