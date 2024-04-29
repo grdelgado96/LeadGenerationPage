@@ -12,12 +12,12 @@ export default function HeroSection() {
       className="relative bg-cover bg-center h-screen bg-[url('/hero-image-4.png')] px-6 pt-14 lg:px-8"
       id="hero"
     >
-      <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-        <div className=" p-5 text-center bg-black/20 ">
-          <h1 className="p-5  text-4xl font-bold tracking-tight text-white sm:text-6xl ">
+      <div className="mx-auto max-w-3xl py-32 sm:py-48 lg:py-56">
+        <div className="p-5 text-center bg-black/20 ">
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl ">
             Make your next event an extraordinary experience
           </h1>
-          <p className=" mt-6 text-2xl font-semibold leading-8 text-white ">
+          <p className="mt-6 text-2xl font-semibold leading-8 text-white ">
             Just tell us what you want and our team are going to make your
             dreams come true.
           </p>
