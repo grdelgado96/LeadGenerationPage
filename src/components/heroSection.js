@@ -1,15 +1,25 @@
 import { Link } from "react-scroll";
 
-const HeroSection = () => {
+/**
+ * Hero section component for displaying the main content at the top of the page.
+ * @module components/HeroSection
+ * @returns {JSX.Element} JSX element representing the hero section component.
+ */
+
+export default function HeroSection() {
   return (
-    <div className="relative bg-cover bg-center h-screen bg-[url('/hero-image-4.png')] px-6 pt-14 lg:px-8" id="hero" >
+    <div
+      className="relative bg-cover bg-center h-screen bg-[url('/hero-image-4.png')] px-6 pt-14 lg:px-8"
+      id="hero"
+    >
       <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-        <div className="text-center ">
-          <h1 className="p-5 bg-black/20 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+        <div className="text-center bg-black/20 ">
+          <h1 className="p-5  text-4xl font-bold tracking-tight text-white sm:text-6xl ">
             Make your next event an extraordinary experience
           </h1>
-          <p className="bg-black/20 mt-6 text-2xl font-semibold leading-8 text-white">
-            Just tell us what you want and our team are going to make your dreams come true.
+          <p className=" mt-6 text-2xl font-semibold leading-8 text-white ">
+            Just tell us what you want and our team are going to make your
+            dreams come true.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-x-6 sm:flex-row gap-y-6">
             <Link
@@ -28,7 +38,8 @@ const HeroSection = () => {
               spy={true}
               smooth={true}
               duration={400}
-              className="text-lg font-semibold leading-6 text-gray-300">
+              className="text-lg font-semibold leading-6 text-gray-300"
+            >
               What people say about us! <span aria-hidden="true">→</span>
             </Link>
           </div>
@@ -36,7 +47,4 @@ const HeroSection = () => {
       </div>
     </div>
   );
-};
-
-export default HeroSection;
-
+}
