@@ -13,7 +13,7 @@ export default function HeroSection() {
       id="hero"
     >
       <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-        <div className="text-center bg-black/20 ">
+        <div className=" p-5 text-center bg-black/20 ">
           <h1 className="p-5  text-4xl font-bold tracking-tight text-white sm:text-6xl ">
             Make your next event an extraordinary experience
           </h1>
