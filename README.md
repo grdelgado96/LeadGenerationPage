@@ -2,7 +2,9 @@
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Run the development server using `npm run dev`.
 
 ```bash
 npm run dev
@@ -38,7 +40,7 @@ The project follows a structured file organization for better maintainability an
 
 ### Footer.js
 
-- Displays footer information such as copyright and links to various pages.
+- Displays footer information such as copyright.
 
 ### HeroSection.js
 
@@ -55,6 +57,10 @@ The project follows a structured file organization for better maintainability an
 ### Services.js
 
 - Lists the different services offered by the business with accompanying images.
+
+### ChooseUs.js
+
+- Displays reasons to choose business event planning service.
 
 ### Subscribe.js
 
@@ -80,14 +86,6 @@ The project follows a structured file organization for better maintainability an
 
 - SQLite database file to store contact and subscription information.
 
-## Deployment
-
-The application can be deployed to various hosting platforms such as Vercel, Netlify, or AWS Amplify. Ensure proper configuration for environment variables and database connections in the production environment.
-
-## Testing
-
-Testing frameworks such as Jest and React Testing Library can be used to write unit tests for components, hooks, and utility functions. Integration tests can also be written to test server-side functionality.
-
 ## Dependencies
 
 Key dependencies used in the project include:
@@ -95,14 +93,6 @@ Key dependencies used in the project include:
 - Next.js: React framework for server-rendered applications.
 - Tailwind CSS: Utility-first CSS framework for styling components.
 - Better SQLite3: SQLite library for Node.js used for database operations.
-
-## Development Setup
-
-To set up the project for development:
-
-1. Clone the repository.
-2. Install dependencies using `npm install`.
-3. Run the development server using `npm run dev`.
 
 ## Conclusion
 

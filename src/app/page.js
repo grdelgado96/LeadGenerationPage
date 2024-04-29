@@ -6,6 +6,7 @@ import Review from "@/components/review";
 import Services from "@/components/services";
 import Subscribe from "@/components/subscribe";
 import Pricing from "@/components/pricing";
+import ChooseUs from "@/components/chooseUs";
 
 /**
  *
@@ -19,6 +20,7 @@ export default function Home() {
       <Form />
       <Review />
       <Pricing />
+      <ChooseUs />
       <Subscribe />
     </>
   );

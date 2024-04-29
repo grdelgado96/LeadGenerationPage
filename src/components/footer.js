@@ -10,15 +10,6 @@ function Footer() {
 
       <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
         <li>
-          <p className="mt-6 text-lg leading-8 text-gray-600">About Us</p>
-        </li>
-        <li>
-          <p className="mt-6 text-lg leading-8 text-gray-600">License</p>
-        </li>
-        <li>
-          <p className="mt-6 text-lg leading-8 text-gray-600">Contribute</p>
-        </li>
-        <li>
           <p className="mt-6 text-lg leading-8 text-gray-600">Contact Us</p>
         </li>
       </ul>

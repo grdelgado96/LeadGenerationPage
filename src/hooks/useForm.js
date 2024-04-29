@@ -55,7 +55,7 @@ export default function useForm() {
     {
       label: "Message",
       id: "message",
-      typeField: "textarea",
+      typefield: "textarea",
       type: "text",
       rows: 4,
       ref: messageInputRef,

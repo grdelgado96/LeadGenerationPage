@@ -35,7 +35,15 @@ function Input(props, ref) {
       ></input>
     );
   return (
-    <div className={props.typefield === "textarea" ? "sm:col-span-2" : ""}>
+    <div
+      className={
+        props.id === "email" ||
+        props.id === "phoneNumber" ||
+        props.id === "message"
+          ? "sm:col-span-2"
+          : ""
+      }
+    >
       <label
         htmlFor={props.id}
         required
